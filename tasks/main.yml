@@ -1,0 +1,11 @@
+---
+# tasks file for bvansomeren.periodic-conf
+
+- name: ensure configs are valid
+  fail:
+    msg: "unsupported configuration value in periodic_conf.name"
+  when: item.name not in periodic_conf_allowed
+  with_items: "{{ periodic_conf }}"
+
+- name: ensure configs are present in /etc/periodic.conf
+  template: src=periodic.conf dest=/etc/periodic.conf owner=root group=wheel
