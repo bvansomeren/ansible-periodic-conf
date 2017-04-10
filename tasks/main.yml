@@ -8,4 +8,8 @@
   with_items: "{{ periodic_conf }}"
 
 - name: ensure configs are present in /etc/periodic.conf
-  template: src=periodic.conf dest=/etc/periodic.conf owner=root group=wheel
+  template:
+    src: periodic.conf
+    dest: /etc/periodic.conf
+    owner: root
+    group: wheel
