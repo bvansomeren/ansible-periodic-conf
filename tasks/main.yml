@@ -6,6 +6,8 @@
     msg: "unsupported configuration value in periodic_conf.name"
   when: item.name not in periodic_conf_allowed
   with_items: "{{ periodic_conf }}"
+  tags:
+  - periodic
 
 - name: ensure configs are present in /etc/periodic.conf
   template:
@@ -13,3 +15,5 @@
     dest: /etc/periodic.conf
     owner: root
     group: wheel
+  tags:
+  - periodic
